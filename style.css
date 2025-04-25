@@ -1,0 +1,38 @@
+body{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+    background-color: salmon;
+    
+}
+.container {
+    background-color:aquamarine;
+    width: 500px;
+    text-align: center;
+    padding: 20px;
+}
+.container textarea{
+    width: 380px;
+    resize: none;
+    
+}
+.CharCount{
+    display: flex;
+    justify-content: space-between;
+    
+}
+.CharCount p{
+    font-style: italic;
+    width: 380px;
+} 
+
+.TotalChar{
+    color: darkmagenta;
+    font-weight: bold;
+}
+.RemainChar{
+    color: darkmagenta;
+    font-weight: bold;
+}
