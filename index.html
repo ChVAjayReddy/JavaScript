@@ -1,17 +1,149 @@
 <!DOCTYPE html>
-<html>
-    <title>Age Calculator</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script src="app.js" defer></script>
-    <body>
-        <div class="container">
-            <h2>Age Calculator</h2>
-            <div class="Calculator">
-                <p>Enter your date of birth</p>
-                <input type="date" id="dob"><br>
-                <button class="calci" id="age">Calculate Age</button>
-                <p id="result"></p>
-            </div>
-        </div>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="main">
+        <h1> Password Checker</h1>
+        <input type="text" size="20" Height="20" placeholder="Enter Password here..." id="password">
+        <p id="length"> &#10006 At least 4 Charactes length </p>
+        <p id="upper"> &#10006 At least 1 Uppercase letter(A-Z)  </p>
+        <p id="lower"> &#10006 At least 1 Lowercase letter(a-z) </p>
+        <p id="num"> &#10006 At least 1 Number(0-9)</p>
+        <p id="special"> &#10006 At least 1 Special Symbol(!..$) </p>
+        <p id="statement">Please enter Password</p>
+
+    </div>
+
+</body>
+<style>
+    body{
+        
+        background: linear-gradient(to right, #2193b0, #6dd5ed);
+    }
+    #password
+{
+    height:40px;
+    font-size:14pt;
+    border-radius: 10px;
+}
+    #main{
+        background-color: white;
+        /* background: linear-gradient(to right, white, #6dd5ed); */
+        /* background: linear-gradient(to right, #ff6a00, #ee0979); */
+        /* background: linear-gradient(to right, #654ea3, #eaafc8); */
+        /* background: linear-gradient(to bottom, #ffffff, #f7f7f7); */
+        /* background: linear-gradient(to right, #f8f8f8, #ffffff); */
+        
+            padding: 30px;
+        margin: auto;
+          border: 0px solid #73AD21;
+          border-radius: 20px;
+          width: 20%;
+ text-align: center;
+ box-shadow: 1px 1px 1px 1px white;
+
+        
+    }
+</style>
+<script>
+ let pass=document.getElementById("password");
+pass.addEventListener("keyup",function(){
+   
+let passval = pass.value;
+    
+    let passlength=passval.length;
+    if(passlength == 0){
+        document.getElementById("length").innerHTML="&#10006 At least 4 Charactes length";
+        document.getElementById("upper").innerHTML = "&#10006 At least 1 Uppercase letter(a-z)";
+        document.getElementById("lower").innerHTML = "&#10006 At least 1 Lowercase letter(a-z)";
+        document.getElementById("num").innerHTML = "&#10006 At least 1 Number(0-9)";
+        document.getElementById("special").innerHTML = "&#10006 At least 1 Special Symbol(!..$)";
+        document.getElementById("length").style.color="black";
+        document.getElementById("upper").style.color="black";
+        document.getElementById("lower").style.color="black";
+        document.getElementById("num").style.color="black";
+        document.getElementById("special").style.color="black";
+        document.getElementById("statement").innerHTML="Please enter Password"
+}
+ 
+    else {
+        let length=0;let upperc=0;let lowerc=0;let nume=0; let specials=0;
+    if(passlength >= 4){
+        document.getElementById("length").innerHTML="&#10004 At least 4 Charactes length";
+        document.getElementById("length").style.color="green";
+        length=1;
+    
+    }
+    else{
+        document.getElementById("length").innerHTML="&#10006 At least 4 Charactes length";
+        document.getElementById("length").style.color="red";
+}
+for(let char of passval){
+  if(char >= "A" && char <= "Z") {
+    document.getElementById("upper").style.color="green";
+    document.getElementById("upper").innerHTML = "&#10004 At least 1 Uppercase letter(a-z)";
+    upperc=1;
+    
+
+    break; // Once we find a lowercase letter, we can stop checking
+  } else {
+    document.getElementById("upper").innerHTML = "&#10006 At least 1 Uppercase letter(a-z)";
+    document.getElementById("upper").style.color="red";
+  }
+}
+
+for(let char of passval){
+  if(char >= "a" && char <= "z") {
+    document.getElementById("lower").style.color="green";
+    document.getElementById("lower").innerHTML = "&#10004 At least 1 Lowercase letter(a-z)";
+    lowerc=1;
+    
+    break; // Once we find a lowercase letter, we can stop checking
+  } else {
+    document.getElementById("lower").innerHTML = "&#10006 At least 1 Lowercase letter(a-z)";
+    document.getElementById("lower").style.color="red";
+  }
+}
+for(let char of passval){
+
+  if(char >= "0" && char <= "9") {
+    document.getElementById("num").style.color="green";
+    document.getElementById("num").innerHTML = "&#10004 At least 1 Number(0-9)";
+    nume=1;
+    
+    break; // Once we find a lowercase letter, we can stop checking
+  } else {
+    document.getElementById("num").innerHTML = "&#10006 At least 1 Number(0-9)";
+    document.getElementById("num").style.color="red";
+  }
+}
+const specialChars = "!@#$%^&*()_+=-`~[]\{}|;':\",./<>?"; // Define your set of special characters
+
+for (let char of passval) {
+  if (specialChars.includes(char)) {
+    document.getElementById("special").style.color="green";
+    document.getElementById("special").innerHTML = "&#10004 At least 1 Special Symbol(!..$)";
+   specials=1;
+    
+    break;
+  } else {
+    document.getElementById("special").innerHTML = "&#10006 At least 1 Special Symbol(!..$)";
+    document.getElementById("special").style.color="red";
+  }
+}
+if(length==1 && upperc==1 && lowerc==1 && nume==1 && specials==1){
+    document.getElementById("statement").innerHTML="You Password is Valid"
+
+}
+else{document.getElementById("statement").innerHTML="You Password is not Valid"
+
+}
+}}
+)
+
+</script>
 </html>
