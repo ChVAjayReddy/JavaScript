@@ -97,9 +97,9 @@ function setupArrayCaptcha(position) {
 function checkAnswer() {
     const userValue = parseFloat(document.getElementById("res").value);
     if (userValue === finalAnswer) {
-        document.getElementById("res1").innerHTML = "Verified";
+        document.getElementById("res1").innerHTML = "&#10004 Verified";
     } else {
-        document.getElementById("res1").innerHTML = "Not Verified";
+        document.getElementById("res1").innerHTML = "&#10006 Not Verified";
         setTimeout(captcha, 1000); // Delay to prevent spamming
     }
 }
