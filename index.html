@@ -98,8 +98,24 @@ function checkAnswer() {
     const userValue = parseFloat(document.getElementById("res").value);
     if (userValue === finalAnswer) {
         document.getElementById("res1").innerHTML = "&#10004 Verified";
+         setInterval(function change(){
+         document.getElementById("res1").style.color="green";
+        
+       },100)
+       setInterval(function change(){
+         document.getElementById("res1").style.color="black";
+        
+       },200)
     } else {
         document.getElementById("res1").innerHTML = "&#10006 Not Verified";
+         setInterval(function change(){
+         document.getElementById("res1").style.color="red";
+        
+       },100)
+       setInterval(function change(){
+         document.getElementById("res1").style.color="black";
+        
+       },200)
         setTimeout(captcha, 1000); // Delay to prevent spamming
     }
 }
