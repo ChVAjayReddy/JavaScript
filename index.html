@@ -3,122 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Captcha Verify</title>
-    <style>
-      #dis{
-        display: flex;
-      } 
-    </style>
+    <title>Password Validation</title>
 </head>
 <body>
-     <div class="main"></div>
-    <p id="ques"></p>
-    <div id="dis">
-        <p id="num1"></p>
-        <p id="op"></p>
-        <p id="num2"></p>
-        <p id="arr"></p>
+    <div id="main">
+        <h1> Password Validation</h1>
+        <input type="text" size="20" Height="20" placeholder="Enter Password here..." id="password">
+        <p id="length"> &#10006 At least 4 Charactes length </p>
+        <p id="upper"> &#10006 At least 1 Uppercase letter(A-Z)  </p>
+        <p id="lower"> &#10006 At least 1 Lowercase letter(a-z) </p>
+        <p id="num"> &#10006 At least 1 Number(0-9)</p>
+        <p id="special"> &#10006 At least 1 Special Symbol(!..$) </p>
+        <p id="statement">Please enter Password</p>
+
     </div>
-    <input type="number" id="res">
-    <button id="verify">Verify</button>
-    <p id="res1"></p>
-    </div>
+
 </body>
+<style>
+    body{
+        
+        background: linear-gradient(to right, #2193b0, #6dd5ed);
+    }
+    #password
+{
+    height:40px;
+    font-size:14pt;
+    border-radius: 10px;
+}
+    #main{
+        /* background-color: white; */
+        /* background: linear-gradient(to right, white, #6dd5ed); */
+        /* background: linear-gradient(to right, #ff6a00, #ee0979); */
+        /* background: linear-gradient(to right, #654ea3, #eaafc8); */
+        /* background: linear-gradient(to bottom, #ffffff, #f7f7f7); */
+        background: white;
+        
+            padding: 30px;
+        margin: auto;
+          border: 0px solid #73AD21;
+          border-radius: 20px;
+          width: 20%;
+ text-align: center;
+ box-shadow: 1px 1px 1px 1px white;
+
+        
+    }
+</style>
 <script>
+ let pass=document.getElementById("password");
+pass.addEventListener("keyup",function(){
    
-let finalAnswer;
-
-document.getElementById("verify").addEventListener("click", checkAnswer);
-captcha();
-
-function captcha() {
-    const qno = Math.floor(Math.random() * 3) + 1;
-
-    document.getElementById("res").value = "";
-    document.getElementById("res1").innerHTML = "";
-
-    if (qno === 1) {
-        setupExpressionCaptcha();
-    } else if (qno === 2) {
-        setupArrayCaptcha("first");
-    } else if (qno === 3) {
-        setupArrayCaptcha("last");
+let passval = pass.value;
+    
+    let passlength=passval.length;
+    if(passlength == 0){
+        document.getElementById("length").innerHTML="&#10006 At least 4 Charactes length";
+        document.getElementById("upper").innerHTML = "&#10006 At least 1 Uppercase letter(A-Z)";
+        document.getElementById("lower").innerHTML = "&#10006 At least 1 Lowercase letter(a-z)";
+        document.getElementById("num").innerHTML = "&#10006 At least 1 Number(0-9)";
+        document.getElementById("special").innerHTML = "&#10006 At least 1 Special Symbol(!..$)";
+        document.getElementById("length").style.color="black";
+        document.getElementById("upper").style.color="black";
+        document.getElementById("lower").style.color="black";
+        document.getElementById("num").style.color="black";
+        document.getElementById("special").style.color="black";
+        document.getElementById("statement").innerHTML="Please enter Password"
+        document.getElementById("statement").style.color="black";
+}
+ 
+    else {
+        let length=0;let upperc=0;let lowerc=0;let nume=0; let specials=0;
+    if(passlength >= 4){
+        document.getElementById("length").innerHTML="";
+        // document.getElementById("length").style.color="green";
+        length=1;
+    
     }
+    else{
+        document.getElementById("length").innerHTML="&#10006 At least 4 Charactes length";
+        document.getElementById("length").style.color="red";
+}
+for(let char of passval){
+  if(char >= "A" && char <= "Z") {
+    // document.getElementById("upper").style.color="green";
+    document.getElementById("upper").innerHTML = "";
+    upperc=1;
+    
+
+    break; // Once we find a lowercase letter, we can stop checking
+  } else {
+    document.getElementById("upper").innerHTML = "&#10006 At least 1 Uppercase letter(A-Z)";
+    document.getElementById("upper").style.color="red";
+  }
 }
 
-function setupExpressionCaptcha() {
-    document.getElementById("ques").innerHTML = "Evaluate the following expression";
-    document.getElementById("arr").innerHTML = "";
-
-    let num1 = Math.floor(Math.random() * 10);
-    let num2 = Math.floor(Math.random() * 10);
-    const op = Math.floor(Math.random() * 4) + 1;
-
-    let operator;
-    switch (op) {
-        case 1:
-            operator = "+";
-            finalAnswer = num1 + num2;
-            break;
-        case 2:
-            operator = "-";
-            if (num2 > num1) [num1, num2] = [num2, num1];
-            finalAnswer = num1 - num2;
-            break;
-        case 3:
-            operator = "*";
-            finalAnswer = num1 * num2;
-            break;
-        case 4:
-            operator = "/";
-            if (num2 === 0) num2 = 1; // Prevent divide by zero
-            if (num2 > num1) [num1, num2] = [num2, num1];
-            finalAnswer = parseFloat((num1 / num2).toFixed(2)); // Rounded
-            break;
-    }
-
-    document.getElementById("num1").innerHTML = num1;
-    document.getElementById("num2").innerHTML = num2;
-    document.getElementById("op").innerHTML = operator;
+for(let char of passval){
+  if(char >= "a" && char <= "z") {
+    // document.getElementById("lower").style.color="green";
+    document.getElementById("lower").innerHTML = "";
+    lowerc=1;
+    
+    break; // Once we find a lowercase letter, we can stop checking
+  } else {
+    document.getElementById("lower").innerHTML = "&#10006 At least 1 Lowercase letter(a-z)";
+    document.getElementById("lower").style.color="red";
+  }
 }
+for(let char of passval){
 
-function setupArrayCaptcha(position) {
-    const randomArray = Array.from({ length: 5 }, () => Math.floor(Math.random() * 10) + 1);
-    document.getElementById("arr").innerHTML = randomArray.join("  ");
-    document.getElementById("num1").innerHTML = "";
-    document.getElementById("num2").innerHTML = "";
-    document.getElementById("op").innerHTML = "";
-
-    document.getElementById("ques").innerHTML = `Enter the ${position} characters as in Image`;
-
-    finalAnswer = position === "first" ? randomArray[0] : randomArray[4];
+  if(char >= "0" && char <= "9") {
+    // document.getElementById("num").style.color="green";
+    document.getElementById("num").innerHTML = "";
+    nume=1;
+    
+    break; // Once we find a lowercase letter, we can stop checking
+  } else {
+    document.getElementById("num").innerHTML = "&#10006 At least 1 Number(0-9)";
+    document.getElementById("num").style.color="red";
+  }
 }
+const specialChars = "!@#$%^&*()_+=-`~[]\{}|;':\",./<>?"; // Define your set of special characters
 
-function checkAnswer() {
-    const userValue = parseFloat(document.getElementById("res").value);
-    if (userValue === finalAnswer) {
-        document.getElementById("res1").innerHTML = "&#10004 Verified";
-         setInterval(function change(){
-         document.getElementById("res1").style.color="green";
-        
-       },100)
-       setInterval(function change(){
-         document.getElementById("res1").style.color="black";
-        
-       },200)
-    } else {
-        document.getElementById("res1").innerHTML = "&#10006 Not Verified";
-         setInterval(function change(){
-         document.getElementById("res1").style.color="red";
-        
-       },100)
-       setInterval(function change(){
-         document.getElementById("res1").style.color="black";
-        
-       },200)
-        setTimeout(captcha, 1000); // Delay to prevent spamming
-    }
+for (let char of passval) {
+  if (specialChars.includes(char)) {
+    // document.getElementById("special").style.color="green";
+    document.getElementById("special").innerHTML = "";
+   specials=1;
+    
+    break;
+  } else {
+    document.getElementById("special").innerHTML = "&#10006 At least 1 Special Symbol(!..$)";
+    document.getElementById("special").style.color="red";
+  }
 }
+if(length==1 && upperc==1 && lowerc==1 && nume==1 && specials==1){
+    document.getElementById("statement").innerHTML="You Password is Valid";
+    document.getElementById("statement").style.color="green";
+
+
+}
+else{document.getElementById("statement").innerHTML="You Password is not Valid"
+
+}
+}}
+)
+
 </script>
-
 </html>
