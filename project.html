@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+             background: linear-gradient(to right, #6dd5ed, #2193b0);
+             justify-items: center;
+    
+        }
+li{width: 280px;
+    height: 30px;
+     display: flex;
+    border: 1px black solid;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    display: flexbox;
+    flex-direction: row;
+    background-color: white;
+    justify-content: space-evenly; 
+    justify-content: center;
+    align-items: center;
+    
+  
+}
+.main{
+    width: 350px;
+    height: auto;
+    background-color: white;
+    border-radius: 20px;
+    align-content: center;
+    margin-left: 20px; 
+}
+.header{
+    text-align: center;margin-bottom: 20px;
+    margin-top: 20px;
+    font-size: 24px;
+}
+input{
+    justify-items: center;
+    margin-left: 40px;
+    width: 200px;
+    height: 30px;
+    border-radius: 20px;
+}
+button{
+    border-radius: 20px;
+    
+}
+.taskremove{
+    background-color: rgb(232, 187, 121);
+    padding: 5px;
+    justify-items: flex-end;
+    position:relative;
+    right: 0px;
+    height: 30px;
+    width: 100px;
+    margin-left: 180px;
+}
+#addedtask{display: flex;
+    flex-direction: column;
+}
+#btn{ height: 30px;
+    background-color: rgb(232, 187, 121);
+}
+#statement{
+    text-align: center;
+}
+
+    </style>
+</head>
+<body>
+      <div class="main">
+        <div class="header"><strong>To-Do List</strong>       </div>
+         
+        <div class="input">
+            <input type="text" placeholder="Enter task" id="task" >
+            <button id="btn">Add Task</button>
+        </div>
+        <p id="statement"></p>
+        <ul id="addedtask">
+            </ul>       
+    </div>
+    <div id="myDiv"></div>
+</body>
+<script>
+    let button=document.getElementById("btn");
+    let rmvbtn=document.getElementById("remove");
+    button.addEventListener("click",addtask);
+function addtask(){
+    let task=document.getElementById("task");
+    let tasking=task.value;
+    if(tasking==''){
+        alert("Please enter task");
+        return;
+    }
+ let task2=document.createElement("button");
+ task2.innerText="Delete";
+ task2.className="taskremove";
+    let task1=document.createElement("li");
+   task1.textContent = tasking;
+       let add=document.getElementById("addedtask");
+       add.appendChild(task1);
+         task1.appendChild(task2);
+       task.value='';
+       let number=document.querySelectorAll("li");
+      document.getElementById("statement").innerHTML="Total no of Tasks: "+ number.length;
+    task2.addEventListener("click",removetask);
+    function removetask(){
+        let number=document.querySelectorAll("li");
+        number1=number.length - 1;
+      document.getElementById("statement").innerHTML="Total no of Tasks: "+ number1;
+    let buttonselect=document.querySelectorAll(".taskremove");
+    buttonselect.forEach((button) => {
+        button.addEventListener("click",(event)=>{
+            console.log("Clicked button:", event.target);
+      console.log("Button text:", event.target.textContent);
+event.target.parentElement.remove()
+        })
+        
+    })
+ }
+
+ }
+ 
+</script>
+  
+</html>
