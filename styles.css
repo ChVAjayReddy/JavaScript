@@ -1,32 +1,12 @@
-body{
-    margin: 0;
-    background-color: grey;
+#questionpaper{
+    display: flex;
+    flex-direction: column;
 }
-.container{
-    margin-top: 20px;
-    width: max-content;
-    margin-left: 45%;
-    background-color: white;
-    padding: 20px;
-    align-items: center;
-    border-radius: 10px;
-    box-shadow: 10px;
+#questionpaper input{
+    width: 500px;
+    height: 40px;
 }
-.container h2{
-    text-align: center;
-}
-.Calculator {
-    text-align: center;
-    align-items: center; 
-}
-.Calculator button{
-        margin: 20px;
-        border-radius: 5px;
-        background-color: cyan;
-}
-.Calculator button:active{
-    background-color: yellowgreen;
-}
-.Calculator input{
-    border-radius: 5px;
+#questionpaper button{ width: 300px;
+    height: 30px;
+
 }
